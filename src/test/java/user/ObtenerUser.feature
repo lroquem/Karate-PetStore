@@ -7,6 +7,7 @@ Feature: Obtener usuario en Swagger PetStore
 
   Scenario: Obtener un usuario existente por username
     Given path 'user', 'usuario_juan'
+    And retry until responseStatus == 200
     When method GET
     Then status 200
     And match response.username == "usuario_juan"

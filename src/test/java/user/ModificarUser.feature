@@ -8,10 +8,12 @@ Feature: Modificar usuario en Swagger PetStore
 
   Scenario: Actualizar usuario existente con datos válidos
     Given path 'user', 'usuario_juan'
+    And retry until responseStatus == 200
     When method GET
     Then status 200
 
     Given path 'user', 'usuario_juan'
+    And retry until responseStatus == 200 && response.username == "juanMod"
     And request
       """
       {
@@ -29,10 +31,9 @@ Feature: Modificar usuario en Swagger PetStore
     Then status 200
     And match response.message == "1001"
 
-    * eval sleep(10000)
-
     # Verificar modificaciones con GET
     Given path 'user', 'usuario_juan'
+    And retry until responseStatus == 200
     When method GET
     Then status 200
     And match response.firstName == "juanMod"
