@@ -5,6 +5,7 @@ Feature: Prueba E2E de User en Swagger PetStore
     * header Content-Type = 'application/json'
     * def username = 'user_e2e_' + java.util.UUID.randomUUID().toString()
     * def sleep = function(millis){ java.lang.Thread.sleep(millis) }
+    * configure retry = { count: 5, interval: 2000 }
 
   Scenario: Crear, obtener, modificar y eliminar un usuario
     # Crear usuario
@@ -37,6 +38,7 @@ Feature: Prueba E2E de User en Swagger PetStore
 
     # Modificar usuario
     Given path 'user', username
+    And retry until responseStatus == 200
     And request
       """
       {
@@ -66,6 +68,7 @@ Feature: Prueba E2E de User en Swagger PetStore
 
     # Eliminar usuario
     Given path 'user', username
+    And retry until responseStatus == 200
     When method delete
     Then status 200
 
