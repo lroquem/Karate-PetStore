@@ -36,19 +36,12 @@ Karate-PetStore/
 
 ### Clonar repositorio
 ```bash
-git clone URL
+git clone https://github.com/lroquem/Karate-PetStore.git
 cd Karate-PetStore
 ```
 
-### Compilar dependencias
-```bash
-mvn clean install
-```
-
 ### Ejecutar pruebas
-```bash
-mvn test -Dtest=UserTestsRunner
-```
+Ejecutar la clase **UserTestsRunner.class**
 
 ---
 
