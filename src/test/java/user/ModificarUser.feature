@@ -13,7 +13,7 @@ Feature: Modificar usuario en Swagger PetStore
     Then status 200
 
     Given path 'user', 'usuario_juan'
-    And retry until responseStatus == 200 && response.username == "juanMod"
+    And retry until responseStatus == 200
     And request
       """
       {
@@ -33,7 +33,7 @@ Feature: Modificar usuario en Swagger PetStore
 
     # Verificar modificaciones con GET
     Given path 'user', 'usuario_juan'
-    And retry until responseStatus == 200
+    And retry until responseStatus == 200 && response.firstName == "juanMod"
     When method GET
     Then status 200
     And match response.firstName == "juanMod"
@@ -42,7 +42,7 @@ Feature: Modificar usuario en Swagger PetStore
     And match response.phone == "900000000"
 
   Scenario: Error al actualizar un usuario que no existe
-    * def userID = 'hubhas7485'
+    * def userID = 'user_' + java.util.UUID.randomUUID().toString()
     # Verificar que no existe con GET
     Given path 'user', userID
     When method GET
