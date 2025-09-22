@@ -7,7 +7,8 @@ public class UserTestsRunner {
         Runner.path("src/test/java/user/CrearUser.feature",
                         "src/test/java/user/ObtenerUser.feature",
                         "src/test/java/user/ModificarUser.feature",
-                        "src/test/java/user/EliminarUser.feature"
+                        "src/test/java/user/EliminarUser.feature",
+                        "src/test/java/user/E2EUser.feature"
                 )
                 .outputCucumberJson(true)
                 .parallel(1);
