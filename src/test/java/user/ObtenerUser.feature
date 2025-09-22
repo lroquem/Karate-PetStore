@@ -19,7 +19,8 @@ Feature: Obtener usuario en Swagger PetStore
     Then status 405
 
   Scenario: Error al consultar un usuario que no existe
-    Given path 'user', 'usuario_inexistente'
+    * def userID = 'user_' + java.util.UUID.randomUUID().toString()
+    Given path 'user', userID
     When method GET
     Then status 404
 
